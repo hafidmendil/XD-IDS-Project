@@ -1,0 +1,15 @@
+# Données et captures
+data/raw_pcap/*.pcap
+data/raw_pcap/*.pcapng
+data/processed_zeek/*
+data/xd_iot_banc/*
+
+# Fichiers système et environnements virtuels
+__pycache__/
+*.pyc
+.env
+venv/
+.DS_Store
+
+# Sorties et logs temporaires
+outputs/*
