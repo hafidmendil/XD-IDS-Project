@@ -13,3 +13,6 @@ venv/
 
 # Sorties et logs temporaires
 outputs/*
+madatasets.zip
+data/**/*.zip
+data/processed_features/*.csv
