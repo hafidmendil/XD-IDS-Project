@@ -1,90 +1,122 @@
-#!/usr/bin/env python3
-"""Baseline Random Forest / XGBoost + évaluation (Précision, Rappel, Macro-F1)."""
 import argparse
 import glob
-import json
-from pathlib import Path
-
-import joblib
-import pandas as pd
+import os
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import (classification_report, confusion_matrix,
-                             f1_score, precision_score, recall_score)
-from sklearn.model_selection import GroupShuffleSplit, train_test_split
-
-META = ["label", "capture_id", "ts"]
+from sklearn.metrics import classification_report, confusion_matrix, f1_score
+from sklearn.model_selection import train_test_split
+import pandas as pd
 
 
-def split_data(df, mode, test_size, seed):
-    if mode == "group":      # captures entières -> test (anti-fuite maximal)
-        gss = GroupShuffleSplit(n_splits=1, test_size=test_size, random_state=seed)
-        tr, te = next(gss.split(df, df["label"], groups=df["capture_id"]))
-        return df.iloc[tr], df.iloc[te]
-    if mode == "temporal":   # passé -> train, futur -> test
-        df = df.sort_values("ts")
-        cut = int(len(df) * (1 - test_size))
-        return df.iloc[:cut], df.iloc[cut:]
-    return train_test_split(df, test_size=test_size, stratify=df["label"],
-                            random_state=seed)  # stratified
+def load_cic_dataset(path_pattern):
+  print(f"[*] Recherche des fichiers avec le motif : {path_pattern}")
+  all_files = []
+  for p in path_pattern.split(","):
+    p = p.strip()
+    found = glob.glob(p)
+    all_files.extend(found)
+
+  all_files = sorted(list(set(all_files)))
+
+  if not all_files:
+    raise ValueError(f"Aucun fichier trouvé avec le motif : {path_pattern}")
+
+  print(f"[+] {len(all_files)} fichier(s) trouvé(s) à charger :")
+  for f in all_files:
+    print(f"    -> {os.path.basename(f)}")
+
+  df_list = []
+  for filename in all_files:
+    df = pd.read_csv(filename, low_memory=False)
+    # Nettoyage crucial des espaces dans les noms de colonnes
+    df.columns = df.columns.str.strip()
+    df_list.append(df)
+
+  combined_df = pd.concat(df_list, ignore_index=True)
+  return combined_df
 
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--data", default="data/processed_features/*.csv")
-    ap.add_argument("--model", choices=["rf", "xgb"], default="rf")
-    ap.add_argument("--split", choices=["group", "temporal", "stratified"],
-                    default="stratified")
-    ap.add_argument("--test-size", type=float, default=0.2)
-    ap.add_argument("--n-estimators", type=int, default=200)
-    ap.add_argument("--max-depth", type=int, default=12)
-    ap.add_argument("--seed", type=int, default=42)
-    ap.add_argument("--out", default="outputs/baseline")
-    args = ap.parse_args()
+  parser = argparse.ArgumentParser(
+      description="Entraînement Multi-Dataset IDS sur CIC-IDS2017"
+  )
+  parser.add_argument(
+      "--data",
+      type=str,
+      required=True,
+      help=(
+          "Chemin ou motif glob (ex: 'madatasets/*[Ww]orking*.csv' ou"
+          " 'madatasets/Wednesday*.csv,madatasets/Friday*.csv')"
+      ),
+  )
+  parser.add_argument(
+      "--sample_frac",
+      type=float,
+      default=0.1,
+      help=(
+          "Fraction de chaque dataset à échantillonner pour préserver la RAM"
+      ),
+  )
+  args = parser.parse_args()
 
-    files = sorted(glob.glob(str(Path(args.data).expanduser())))
-    df = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
-    print(f"[INFO] {len(df)} flux, {len(files)} fichier(s)")
+  # 1. Chargement global
+  df = load_cic_dataset(args.data)
+  print(f"[+] Dataset combiné chargé. Dimensions initiales : {df.shape}")
 
-    train, test = split_data(df, args.split, args.test_size, args.seed)
-    feats = [c for c in df.columns if c not in META]
-    Xtr, ytr, Xte, yte = train[feats], train["label"], test[feats], test["label"]
-    print(f"[INFO] Train={len(train)} Test={len(test)} | split={args.split}")
+  # 2. Échantillonnage pour la maîtrise de la RAM
+  if args.sample_frac < 1.0:
+    df = df.sample(frac=args.sample_frac, random_state=42)
+    print(
+        f"[i] Échantillonnage appliqué ({int(args.sample_frac*100)}%). Nouvelles"
+        f" dimensions : {df.shape}"
+    )
 
-    if args.model == "rf":
-        clf = RandomForestClassifier(
-            n_estimators=args.n_estimators, max_depth=args.max_depth,
-            class_weight="balanced", n_jobs=-1, random_state=args.seed)
-    else:
-        from xgboost import XGBClassifier
-        spw = (ytr == 0).sum() / max((ytr == 1).sum(), 1)  # déséquilibre
-        clf = XGBClassifier(
-            n_estimators=args.n_estimators, max_depth=min(args.max_depth, 8),
-            learning_rate=0.1, scale_pos_weight=spw,
-            eval_metric="logloss", random_state=args.seed)
+  # 3. Nettoyage des valeurs infinies ou NaN
+  df.replace([float("inf"), float("-inf")], pd.NA, inplace=True)
+  df.dropna(inplace=True)
 
-    clf.fit(Xtr, ytr)
-    pred = clf.predict(Xte)
+  # 4. Séparation Features / Label
+  if "Label" not in df.columns:
+    raise KeyError(
+        "La colonne 'Label' est introuvable dans les colonnes :"
+        f" {list(df.columns)}"
+    )
 
-    metrics = {
-        "precision_attack": precision_score(yte, pred, zero_division=0),
-        "recall_attack": recall_score(yte, pred, zero_division=0),
-        "macro_f1": f1_score(yte, pred, average="macro", zero_division=0),
-        "confusion_matrix": confusion_matrix(yte, pred).tolist(),
-    }
-    print("\n", classification_report(yte, pred, target_names=["normal", "attaque"],
-                                      zero_division=0))
-    print("Matrice de confusion [[TN FP],[FN TP]] :\n", metrics["confusion_matrix"])
-    print(f"Macro-F1 = {metrics['macro_f1']:.4f}")
+  X = df.drop(columns=["Label"])
 
-    if hasattr(clf, "feature_importances_"):
-        imp = pd.Series(clf.feature_importances_, index=feats).sort_values(ascending=False)
-        print("\nTop 10 features :\n", imp.head(10).to_string())
+  # Transformation binaire globale (0: Normal, 1: Attaque)
+  y = df["Label"].apply(lambda val: 0 if str(val).strip() == "BENIGN" else 1)
 
-    out = Path(args.out)
-    out.mkdir(parents=True, exist_ok=True)
-    joblib.dump(clf, out / f"{args.model}.joblib")
-    (out / f"{args.model}_metrics.json").write_text(json.dumps(metrics, indent=2))
+  print(
+      "[+] Distribution globale des classes (0 = Normal, 1 = Attaque) :"
+      f"\n{y.value_counts()}"
+  )
+
+  # 5. Division Train / Test
+  X_train, X_test, y_train, y_test = train_test_split(
+      X, y, test_size=0.2, random_state=42, stratify=y
+  )
+
+  # 6. Entraînement du Modèle
+  print(
+      "[*] Entraînement du modèle Random Forest sur le trafic combiné en"
+      " cours..."
+  )
+  model = RandomForestClassifier(
+      n_estimators=100, max_depth=20, random_state=42, n_jobs=-1
+  )
+  model.fit(X_train, y_train)
+
+  # 7. Évaluation
+  print("[*] Évaluation du modèle combiné sur le jeu de test...")
+  y_pred = model.predict(X_test)
+
+  f1 = f1_score(y_test, y_pred, average="macro")
+  print(f"\n[RÉSULTAT GLOBAL] Macro-F1 Score : {f1:.4f}\n")
+  print("--- Matrice de Confusion ---")
+  print(confusion_matrix(y_test, y_pred))
+  print("\n--- Rapport de Classification ---")
+  print(classification_report(y_test, y_pred))
 
 
 if __name__ == "__main__":
-    main()
+  main()
