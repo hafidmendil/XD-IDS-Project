@@ -1,0 +1,8 @@
+protocol: E2
+seed: 42
+fractions:
+  train: 0.70
+  validation: 0.15
+  test: 0.15
+# null signifie : durée de fenêtre lue dans le fichier build_windows.
+purge_seconds: null

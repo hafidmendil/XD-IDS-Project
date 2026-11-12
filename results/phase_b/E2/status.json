@@ -1,0 +1,13 @@
+{
+  "class_counts": {
+    "0": 5,
+    "1": 173
+  },
+  "config_sha256": "f3c1c35fdacf58640a94dc855cb5404af8ec8cfd9ec257f43e37160118deeed3",
+  "created_at_utc": "2026-11-11T20:13:12.181342+00:00",
+  "protocol": "E2",
+  "reason": "Les intervalles des sessions se chevauchent : un split chronologique E2 non ambigu n'est pas possible.",
+  "split_sha256": "NON DISPONIBLE (aucun split E2 valide produit)",
+  "status": "not_run_invalid_split",
+  "windows_sha256": "6a733c807fe41fc60f8bfedfd84468d118cadeb540eb9479edf12cdef2a85f34"
+}

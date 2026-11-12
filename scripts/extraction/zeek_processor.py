@@ -121,7 +121,7 @@ def process_pcap(pcap_path, output_root, timeout=None):
         json.dump(manifest, f, indent=4, ensure_ascii=False)
 
     print("\n========== RÉSULTAT ==========")
-    print(f"[SUCCESS] Analyse terminée.")
+    print("[SUCCESS] Analyse terminée.")
     print(f"[INFO] Durée : {duration:.3f} secondes")
     print(f"[INFO] Nombre de logs : {len(log_files)}")
     print(f"[INFO] Dossier : {output_dir}")

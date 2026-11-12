@@ -1,0 +1,70 @@
+{
+  "audit_summary": {
+    "capture_audit_count": 27,
+    "duplicate_audit": {
+      "exact_duplicate_groups": 0,
+      "exact_duplicates_removed": 0,
+      "groups_with_conflicting_labels": 0,
+      "label_conflict_rows_kept": 0,
+      "near_duplicate_groups": 22,
+      "near_duplicates_removed": 23
+    },
+    "excluded_flows": {
+      "invalid_availability": 0,
+      "invalid_duration": 92251,
+      "invalid_timestamp": 0,
+      "missing_endpoint": 0
+    }
+  },
+  "capture_count": 27,
+  "class_counts": {
+    "0": 5,
+    "1": 173
+  },
+  "config_sha256": {
+    "configs/captures.yaml": "054d6d33e096ae64d1689cd88e367efddb1bf80f0833813852b56313508bc4e1",
+    "configs/splits.yaml": "05225f531e7c8564152c5c4af40ec619bdb1dc1a2b68d7a7f476c831caa0d290",
+    "configs/windows.yaml": "7f8de4a3c3b549b1b80975443cd5128de9ebe44fa7d7e65cd8bb1bfa1c95b5a6"
+  },
+  "created_at_utc": "2026-11-11T20:12:23.904760+00:00",
+  "git_commit": "8d85023145e3c7e08f8c520d0a41c120b349d091",
+  "inputs": {
+    "data/processed_features/0day_windows.csv": "72864ead455dfe2e0847724c8ec776196acab1f34066f15273dae0b4cfe4f8b8",
+    "data/processed_features/blackEnergy_windows.csv": "2aaacb7ab1d6a199a8d00367d58fb2f201f76c1b1116f860f354f55116b81ddc",
+    "data/processed_features/distcc_exec_backdoor2_windows.csv": "3ce8082b25b1fe386e0f587e3820414064a72a7b3bf2d79695e061e6bfba0a5a",
+    "data/processed_features/distcc_exec_backdoor_windows.csv": "0a600913e6b111b7db8d3c3bbc6cbdd85460ec8146c81bbbf549bb9f283539d0",
+    "data/processed_features/hydra_ftp2_windows.csv": "b2e969e2c3be44cd15790fa2b8a619f85a0beb8a0b64b305893f7ca5f76e1f6a",
+    "data/processed_features/hydra_ftp_windows.csv": "bec34d238d9df8cd3369b662a4d2417d19d63079754fe6aaaa2adb51b493f516",
+    "data/processed_features/hydra_ssh2_windows.csv": "1f055cac0d6b51a18e866617800b4df8f1120d7c824319130a29a588e8eba63f",
+    "data/processed_features/hydra_ssh_windows.csv": "69c66392a2e103787057ba54cd63944d66adf914596a89daa7f71b960422a07d",
+    "data/processed_features/java_rmi2_windows.csv": "6d3a64a6371c08aa718812a170c6b61ff613548e7d8360d8faf9791c30661614",
+    "data/processed_features/java_rmi_windows.csv": "ab5190b3263354148bbe819c49991a119aa2cacc428ae3ee3027035a7ecd99c9",
+    "data/processed_features/mirai_windows.csv": "20aa5f4a13c75636c4144a7a821b2e203c8bbaba5b2db76efbe76729b6c79ca0",
+    "data/processed_features/netbios_ssn2_windows.csv": "1667b605acffd20d7625279acb4c343b59e582f084441eb14befba46911a6a26",
+    "data/processed_features/netbios_ssn_windows.csv": "4029ec2ff97865a7eed14b4db0a0a36dde61f1f8cb65aa3e3e8944eeade9a72f",
+    "data/processed_features/normal2_windows.csv": "f3a88c66145ef1bc83e46d7c2efc6f7830d2528145bf043839b09219c691da45",
+    "data/processed_features/normal_windows.csv": "8e7a3af4d8c02841242cbe8e3d1904ee8e845db2bc94788bea5fb0ff75fb949a",
+    "data/processed_features/replayAttacks_windows.csv": "8392aba2c3f3da4fc0eb92fd9a487727963716e807e2e370652c0393bc19e2fd",
+    "data/processed_features/ruby_drb2_windows.csv": "66f5f8b4d1d8bddb4821b903d58f6d1db823089e4816843b6ed8f8050df03553",
+    "data/processed_features/ruby_drb_windows.csv": "57dcb284eecd4460866346dc6a77a4e1b244e50c724e369439701b48821e1474",
+    "data/processed_features/smtp22_windows.csv": "550f90c621e0331ba8b2f22b83ca1b7a3063a9b17fbdb74a4b8922062f6a0923",
+    "data/processed_features/smtp_windows.csv": "8c4e364bdf542417682cddf1471ec77cfe9cfaca50b0fbc74106bb651d28ab2a",
+    "data/processed_features/tomcat2_windows.csv": "5ae6eb757635a23dfe06db8ccc3eca3a0d9dbc050474b70dc7df541b91a0edfc",
+    "data/processed_features/tomcat_windows.csv": "3044cc85777c415329485a4349ccf7513d8debfb4fd2a79a0266a4c2e844825f",
+    "data/processed_features/unreallrcd2_windows.csv": "63f05bad3fb69b26f873800e2b44d840b2394e7cdb68364b10dc4a472ceb4256",
+    "data/processed_features/unreallrcd_windows.csv": "f124b61457799ecc7340dc710941c58b7c0e0064c42213dc2c09948fdfb2bca3",
+    "data/processed_features/vsftpd2_windows.csv": "a2dd6801f5743d98b4e10198eac4ef5d903982e8e9e96cd987bfaec9cea68315",
+    "data/processed_features/vsftpd_windows.csv": "2ff4b508717e894401f8cd21acae1b7f0e22f2e2736f22f0f4a725bb347a0560",
+    "data/processed_features/zeus_windows.csv": "08834cbd1cdccb9c94d0a0422624a723bed77cbcc075351a8f5533bc56ebfa61"
+  },
+  "output_file": "data/processed_features/windows_all.csv",
+  "output_sha256": "6a733c807fe41fc60f8bfedfd84468d118cadeb540eb9479edf12cdef2a85f34",
+  "software_versions": {
+    "pandas": "2.3.3",
+    "python": "3.14.6",
+    "scikit_learn": "1.9.0",
+    "xgboost": "3.4.1",
+    "zeek": "/opt/zeek/bin/zeek version 9.0.1"
+  },
+  "window_count": 178
+}

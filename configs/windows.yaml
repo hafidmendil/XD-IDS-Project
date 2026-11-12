@@ -1,0 +1,4 @@
+# T doit être réglé sur les sources, puis figé avant toute évaluation cible.
+window_seconds: 60
+# Le rôle réseau doit correspondre à la topologie documentée de la capture.
+device_side: orig

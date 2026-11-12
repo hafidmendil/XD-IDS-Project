@@ -1,0 +1,28 @@
+{
+  "config_file": "configs/splits.yaml",
+  "config_sha256": "05225f531e7c8564152c5c4af40ec619bdb1dc1a2b68d7a7f476c831caa0d290",
+  "created_at_utc": "2026-11-11T20:12:24.628231+00:00",
+  "details": {
+    "duplicate_groups": 173,
+    "purged_windows": 0,
+    "rows_per_split": {
+      "test": 27,
+      "train": 124,
+      "validation": 27
+    },
+    "sessions_per_split": null,
+    "stratified_class_coverage": true
+  },
+  "git_commit": "8d85023145e3c7e08f8c520d0a41c120b349d091",
+  "input_sha256": "6a733c807fe41fc60f8bfedfd84468d118cadeb540eb9479edf12cdef2a85f34",
+  "output_file": "splits/E1.csv",
+  "output_sha256": "ff74c16dd1cd4b873596dc80fa0f389349eb33d4f7b525ccb8b1cc131c67cc67",
+  "protocol": "E1",
+  "software_versions": {
+    "pandas": "2.3.3",
+    "python": "3.14.6",
+    "scikit_learn": "1.9.0",
+    "xgboost": "3.4.1",
+    "zeek": "/opt/zeek/bin/zeek version 9.0.1"
+  }
+}

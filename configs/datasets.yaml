@@ -1,0 +1,162 @@
+version: 1
+datasets:
+  - id: MQTT-IoTIDS2020
+    title: MQTT-IoT-IDS2020
+    source_url: https://doi.org/10.21227/bhxy-ep04
+    download_url: null
+    license: NON DISPONIBLE
+    access:
+      account_required: NON DISPONIBLE
+      details: Accès déclaré via DOI/DataPort; accès direct téléchargeable non confirmé.
+    size: "~1,35 Go (source de la mission; à vérifier)"
+    format: "5 PCAP MQTT"
+    pcap_available: "oui, à obtenir auprès de la source"
+    labels:
+      semantics: "Normal, scan, brute force SSH/MQTT selon la description de la mission."
+      reconstruction: "Étiquettes par capture ou métadonnées source; correspondance exacte NON DISPONIBLE tant que les fichiers et leur manifeste ne sont pas obtenus."
+      confidence: faible
+    classes: [normal, scan, brute_force_ssh, brute_force_mqtt]
+    imbalance: NON DISPONIBLE
+    leakage_risks:
+      - "Séparation aléatoire de fenêtres d'une même capture/session."
+      - "Labels constants par capture pouvant permettre au modèle d'identifier la capture."
+    topology: "À documenter sur les PCAP; orig/resp NON DISPONIBLE."
+    status: "à télécharger; bloqué par accès direct et provenance des labels non vérifiés"
+    checksum: NON DISPONIBLE
+    e3_admissible: false
+    e3_blocker: "PCAP, manifestes de labels, licence et topologie non vérifiés localement."
+
+  - id: Bot-IoT
+    title: Bot-IoT
+    source_url: https://research.unsw.edu.au/projects/bot-iot-dataset
+    download_url: null
+    license: NON DISPONIBLE
+    access:
+      account_required: NON DISPONIBLE
+      details: "Le site du projet est la source de référence; l'accès direct aux PCAP originaux n'est pas vérifié."
+    size: "~69,3 Go de PCAP originaux (source de la mission; à vérifier)"
+    format: "PCAP originaux; CSV/étiquettes associés à reconstruire ou vérifier"
+    pcap_available: "oui à la source; absent du dépôt"
+    labels:
+      semantics: "Familles Bot-IoT décrites par la source; MQTT simulé."
+      reconstruction: "À reconstruire à partir des informations de génération et fichiers de labels de la source; protocole exact NON DISPONIBLE localement."
+      confidence: faible
+    classes: NON DISPONIBLE
+    imbalance: "Fort déséquilibre signalé dans la description de la mission; proportions exactes NON DISPONIBLES."
+    leakage_risks:
+      - "Fuite entre captures, scénarios ou sessions apparentés."
+      - "Confusion entre label de capture/scénario et comportement d'attaque."
+      - "Déséquilibre pouvant rendre l'accuracy trompeuse."
+    topology: "À établir à partir des scénarios PCAP; orig/resp NON DISPONIBLE localement."
+    status: "à télécharger; non inclus localement"
+    checksum: NON DISPONIBLE
+    e3_admissible: false
+    e3_blocker: "PCAP, mapping labels fiable, licence et manifeste/checksums non vérifiés localement."
+
+  - id: ToN_IoT
+    title: ToN_IoT
+    source_url: https://research.unsw.edu.au/projects/toniot-datasets
+    download_url: null
+    license: NON DISPONIBLE
+    access:
+      account_required: NON DISPONIBLE
+      details: "Le site du projet est la source de référence; accès direct aux fichiers non vérifié."
+    size: NON DISPONIBLE
+    format: "PCAP bruts et autres données multimodales selon la source."
+    pcap_available: "oui à la source; absent du dépôt"
+    labels:
+      semantics: "Taxonomie de la source ToN_IoT; correspondance exacte à vérifier sur la version obtenue."
+      reconstruction: "Utiliser les métadonnées/labels source en lien avec les captures. Ne pas utiliser les logs Zeek distribués; ré-extraire Zeek pour homogénéité."
+      confidence: faible
+    classes: NON DISPONIBLE
+    imbalance: NON DISPONIBLE
+    leakage_risks:
+      - "Fuite entre sessions, appareils ou modalités."
+      - "Biais de capture/scénario et mapping label-capture."
+      - "Utilisation accidentelle des logs Zeek pré-calculés au lieu d'une extraction homogène."
+    topology: "À établir sur PCAP originaux; orig/resp NON DISPONIBLE localement."
+    status: "à télécharger; non inclus localement"
+    checksum: NON DISPONIBLE
+    e3_admissible: false
+    e3_blocker: "PCAP, labels alignés, licence et topologie non vérifiés localement."
+
+  - id: CICIoT2023
+    title: CIC IoT Dataset 2023
+    source_url: https://www.unb.ca/cic/datasets/iotdataset-2023.html
+    download_url: null
+    license: NON DISPONIBLE
+    access:
+      account_required: NON DISPONIBLE
+      details: "Conditions d'accès et URL directe des fichiers non vérifiées."
+    size: NON DISPONIBLE
+    format: "PCAP par type d'attaque; CSV existants produits avec DPKT ne sont pas des entrées Zeek."
+    pcap_available: "oui à la source; absent du dépôt"
+    labels:
+      semantics: "33 attaques regroupées en 7 classes selon la description de la mission."
+      reconstruction: "À relier aux captures/types d'attaque du jeu original; mapping exact à confirmer avec la version téléchargée."
+      confidence: faible
+    classes: "7 classes de haut niveau (noms NON DISPONIBLES dans le dépôt)"
+    imbalance: NON DISPONIBLE
+    leakage_risks:
+      - "Mélange de captures/types d'attaque entre partitions."
+      - "Fuite d'identifiants de fichiers ou de scénario."
+      - "Les CSV DPKT ne sont pas homogènes avec Zeek; ré-extraction PCAP obligatoire."
+    topology: "À documenter par capture; orig/resp NON DISPONIBLE localement."
+    status: "à télécharger; non inclus localement"
+    checksum: NON DISPONIBLE
+    e3_admissible: false
+    e3_blocker: "PCAP, labels exacts, licence et topologie non vérifiés localement."
+
+  - id: CIC-IDS2017
+    title: CIC-IDS2017
+    source_url: https://www.unb.ca/cic/datasets/ids-2017.html
+    download_url: null
+    license: NON DISPONIBLE
+    access:
+      account_required: NON DISPONIBLE
+      details: "Les CSV présents localement proviennent de madatasets; provenance/licence originale non documentée."
+    size: "~800 Mo de CSV dans madatasets (estimation initiale; taille exacte à mesurer)"
+    format: "8 CSV de flux CICFlowMeter dans madatasets; aucun PCAP associé confirmé dans ce dépôt."
+    pcap_available: "non confirmé dans ce dépôt"
+    labels:
+      semantics: "Labels CIC-IDS2017/CICFlowMeter; nomenclature précise des CSV doit être vérifiée avant tout mapping."
+      reconstruction: "Ne pas déduire une vérité terrain des noms de CSV seuls; vérifier les colonnes Label et leur documentation originale."
+      confidence: faible
+    classes: "NON DISPONIBLE sans inspection et validation des labels des CSV."
+    imbalance: NON DISPONIBLE
+    leakage_risks:
+      - "Fuite par jour, capture, scénario ou lignes dupliquées."
+      - "Différences de sémantique et d'implémentation CICFlowMeter vs Zeek."
+      - "Usage limité à l'illustration de la critique d'évaluation; exclu du noyau."
+    topology: "À vérifier dans la documentation de la source; orig/resp NON DISPONIBLE."
+    status: "CSV disponibles localement; usage restreint à l'illustration méthodologique"
+    checksum: NON DISPONIBLE
+    e3_admissible: false
+    e3_blocker: "Pas de PCAP local vérifié et interdiction d'usage comme domaine du noyau."
+
+  - id: madatasets
+    title: "madatasets (collection locale)"
+    source_url: NON DISPONIBLE
+    download_url: null
+    license: NON DISPONIBLE
+    access:
+      account_required: NON DISPONIBLE
+      details: "Fichiers déjà présents localement; provenance d'origine à documenter."
+    size: "PCAP locaux inventoriés dans data/metadata/captures.csv."
+    format: "PCAP et CSV CIC-IDS2017/CICFlowMeter."
+    pcap_available: "oui, 17 PCAP retenus dans le registre local; doublons exclus du registre, sources conservées"
+    labels:
+      semantics: "Normal vs attaque supposé à partir du nom des captures."
+      reconstruction: "Heuristique par nom; pas d'annotation externe vérifiée."
+      confidence: faible
+    classes: [normal, attack]
+    imbalance: "Fenêtres actuelles fortement déséquilibrées; voir splits et rapport générés plutôt que d'inférer des proportions PCAP."
+    leakage_risks:
+      - "Biais de confusion entre label et identité de capture."
+      - "Sessions/captures de types différents, origines temporelles non homogènes."
+      - "Fuite par captures apparentées et doublons/quasi-doublons."
+    topology: "Inconnue; `orig` est une hypothèse opérationnelle à valider."
+    status: "présent localement; labels et provenance non validés"
+    checksum: "SHA-256 par PCAP dans data/metadata/captures.csv et configs/captures.yaml."
+    e3_admissible: false
+    e3_blocker: "Labels heuristiques et provenance inconnue; insuffisant pour un transfert inter-domaines validé."

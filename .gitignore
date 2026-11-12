@@ -16,3 +16,14 @@ outputs/*
 madatasets.zip
 data/**/*.zip
 data/processed_features/*.csv
+
+# --- Données lourdes, à tous les niveaux de dossiers ---
+*.pcap
+*.pcapng
+*.cap
+*.part
+madatasets/
+data/processed_zeek/
+data/raw_pcap/**/*.log
+data/raw_pcap/**/*.sh
+data/raw_pcap/**/*.sh

@@ -1,0 +1,48 @@
+{
+  "canonical_capture_count": 27,
+  "created_at_utc": "2026-11-11T20:11:59.165279+00:00",
+  "exact_duplicates_excluded": 0,
+  "git_commit": "8d85023145e3c7e08f8c520d0a41c120b349d091",
+  "inputs": {
+    "/home/hafid/XD-IDS_Project/madatasets/0day.pcap": "b89636f3f4dfb6afc0420c4dbc92da9004554f662d47e37852b003ee942e8885",
+    "/home/hafid/XD-IDS_Project/madatasets/blackEnergy.pcap": "912f9258d88aa0f4deb51882082b4e53f984ebb20d836216a0ea05fb1de696f5",
+    "/home/hafid/XD-IDS_Project/madatasets/distcc_exec_backdoor.pcap": "a333a14fe388971d3c641be93145c1875fc0fecda0f01b498a130f944de899d2",
+    "/home/hafid/XD-IDS_Project/madatasets/distcc_exec_backdoor2.pcap": "5c3ae516fc6c2657498b872b648f55c826fb49943dbe81f3f31f241e4efee8d0",
+    "/home/hafid/XD-IDS_Project/madatasets/hydra_ftp.pcap": "831659040217786cc082e34e6ec120e36a3ef89acd9a345754279fa468b2a7ff",
+    "/home/hafid/XD-IDS_Project/madatasets/hydra_ftp2.pcap": "bd18403f217df1955bfeefe10d3e451bb875c7cc9574b0fdb5e13aa97b121ef6",
+    "/home/hafid/XD-IDS_Project/madatasets/hydra_ssh.pcap": "762d0dd17efcc8e6f3e6a1af18a9c858cb5313f3e2d46174bd6ea58263d433a7",
+    "/home/hafid/XD-IDS_Project/madatasets/hydra_ssh2.pcap": "44d7c9c832bda5880fccdfff82ca4b24a22a4e124e4085089b2dcd0cd788a50d",
+    "/home/hafid/XD-IDS_Project/madatasets/java_rmi.pcap": "107743d5d3ae5f17b2253caca7d78f8727c0081b7e6515c41c5446d01b102eb3",
+    "/home/hafid/XD-IDS_Project/madatasets/java_rmi2.pcap": "9ab8a2979c6304cb3a83f6cff30658c5ecd7f1561d3c0db548a078073b4568d8",
+    "/home/hafid/XD-IDS_Project/madatasets/mirai.pcap": "2ac9a4c7540779c9068c3b31e4169c3bd10c417091a27a87577cec345b85d720",
+    "/home/hafid/XD-IDS_Project/madatasets/netbios_ssn.pcap": "70dd2ed16605ac4faf7eebba60cced15a0e68f7cd94461d3996969efd48687ac",
+    "/home/hafid/XD-IDS_Project/madatasets/netbios_ssn2.pcap": "a38d3de8ed345460dc548a5b7ec6f8beaa9afebfc119ff1597461df0f99deda3",
+    "/home/hafid/XD-IDS_Project/madatasets/normal.pcap": "ab4b95dcfc8e737e17f046b9182636220c48cce48e58231e0a2a143419c14461",
+    "/home/hafid/XD-IDS_Project/madatasets/normal2.pcap": "605f312e4b6c0509a7c3e2f808a966458e9d9970071b66a350cc72545ac6c26d",
+    "/home/hafid/XD-IDS_Project/madatasets/replayAttacks.pcap": "fdb369df1add7d7c3449452f2c2004d05a802a0c26b731281f87cd998a2a59d5",
+    "/home/hafid/XD-IDS_Project/madatasets/ruby_drb.pcap": "a135211cb9636d48c406742ffad4343bc3cc37a499e78c02052e70fc51a55eeb",
+    "/home/hafid/XD-IDS_Project/madatasets/ruby_drb2.pcap": "3f8541070796780e678ea78ef3ac3a1cf668b71fae7aebb04fbc8f8427e8b90b",
+    "/home/hafid/XD-IDS_Project/madatasets/smtp.pcap": "5f56d4d49e6dbad27ad1704a6101d7c920dd12dc67bd88c38f7acc7e7a50b57d",
+    "/home/hafid/XD-IDS_Project/madatasets/smtp22.pcap": "fbc78d8718916dd1c0557d6985f7175b5161b261c31d40d44841439119054762",
+    "/home/hafid/XD-IDS_Project/madatasets/tomcat.pcap": "2224eb798cc88a80a327aa3b3a36523d769fb74451081f58919c690e64a57c3d",
+    "/home/hafid/XD-IDS_Project/madatasets/tomcat2.pcap": "11f44850bed44a99639a215d870b155cfcd7ba8751f637b16cd7f244f9de6c56",
+    "/home/hafid/XD-IDS_Project/madatasets/unreallrcd.pcap": "e23f9ed998616be5b06bf7a9f4b51653b2a749f31d8be804883f478ce0534f81",
+    "/home/hafid/XD-IDS_Project/madatasets/unreallrcd2.pcap": "ec8d6f8079095e9b14ef8450fb6776433f05c238ae4a8a99887493efe1d7e8c6",
+    "/home/hafid/XD-IDS_Project/madatasets/vsftpd.pcap": "43c4f099b5e1bae31603970160db2c9f750c77181344bb81429ef27fe4f10c82",
+    "/home/hafid/XD-IDS_Project/madatasets/vsftpd2.pcap": "e9993ebae4bc25d4d424d7a5dff407fd1862124c4741f50570f9a2ac9d351ec2",
+    "/home/hafid/XD-IDS_Project/madatasets/zeus.pcap": "69f80d19332be12f841dfbda520ca78a1afe042215dd11b758ea84ae35cc0e37"
+  },
+  "output_count": 27,
+  "outputs": {
+    "configs/captures.yaml": "054d6d33e096ae64d1689cd88e367efddb1bf80f0833813852b56313508bc4e1",
+    "data/metadata/captures.csv": "b961bc8971908da7d4c74ea0dc60047d2615d7abb2295caf8db67ac1481a75c5",
+    "docs/data_card_madatasets.md": "0ab0e825e71e536f3f06108bb773c264ac0fc09455903dee4b547766759752f0"
+  },
+  "software_versions": {
+    "pandas": "2.3.3",
+    "python": "3.14.6",
+    "scikit_learn": "1.9.0",
+    "xgboost": "3.4.1",
+    "zeek": "/opt/zeek/bin/zeek version 9.0.1"
+  }
+}

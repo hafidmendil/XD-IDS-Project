@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Prétraitement des conn.log Zeek -> dataset de features prêt pour le ML.
+Prétraitement des conn.log Zeek vers des features et métadonnées de flux.
 Gère les logs TSV (par défaut) et JSON. Étiquetage : 0 = normal, 1 = attaque.
+Les adresses sont conservées uniquement pour le regroupement par appareil.
 """
 import argparse
 import sys
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 # Catégories FIXES (pas de fit sur les données => aucune fuite train/test)
@@ -52,9 +52,11 @@ def engineer_features(df):
     """Sélection, nettoyage, encodage, features dérivées."""
     out = pd.DataFrame(index=df.index)
 
-    # Numériques : '-' (NaN) -> 0
+    # Les champs absents sont imputés à zéro, sauf duration utilisée pour la causalité.
     for c in NUM_COLS:
-        out[c] = pd.to_numeric(df.get(c), errors="coerce").fillna(0)
+        values = pd.to_numeric(df.get(c), errors="coerce")
+        # Sans durée, la disponibilité causale des statistiques du flux est inconnue.
+        out[c] = values if c == "duration" else values.fillna(0)
 
     # Features dérivées (utiles pour détecter scans / flood / exfiltration)
     out["total_bytes"] = out["orig_bytes"] + out["resp_bytes"]
@@ -72,6 +74,23 @@ def engineer_features(df):
         out[f"state_{s}"] = (state == s).astype(int)
 
     return out
+
+
+def add_flow_metadata(features, df, capture_id):
+    """Ajoute les métadonnées nécessaires au regroupement causal des flux."""
+    required = {"ts", "duration", "id.orig_h", "id.resp_h"}
+    missing = required.difference(df.columns)
+    if missing:
+        raise KeyError(
+            "Champs Zeek nécessaires au regroupement absents : "
+            + ", ".join(sorted(missing))
+        )
+
+    features["ts"] = pd.to_numeric(df["ts"], errors="coerce")
+    features["capture_id"] = capture_id
+    features["src_ip"] = df["id.orig_h"].astype("string").fillna("")
+    features["dst_ip"] = df["id.resp_h"].astype("string").fillna("")
+    return features
 
 
 def main():
@@ -93,8 +112,9 @@ def main():
     labels = build_labels(df, ips, args.label)
 
     feats = engineer_features(df)
-    feats["ts"] = pd.to_numeric(df.get("ts"), errors="coerce").fillna(0)  # pour split temporel
-    feats["capture_id"] = args.capture_id or Path(args.conn_log).parent.name
+    feats = add_flow_metadata(
+        feats, df, args.capture_id or Path(args.conn_log).parent.name
+    )
     feats["label"] = labels.values
 
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,29 @@
+{
+  "created_at_utc": "2026-11-11T20:30:07.054019+00:00",
+  "git_commit": "8d85023145e3c7e08f8c520d0a41c120b349d091",
+  "inputs": {
+    "configs/captures.yaml": "054d6d33e096ae64d1689cd88e367efddb1bf80f0833813852b56313508bc4e1",
+    "configs/datasets.yaml": "51118e411ee8a6a23f21ec5848714f9e9a26b4a7e2c9f226b685bf98c93f5754",
+    "configs/models.yaml": "f3c1c35fdacf58640a94dc855cb5404af8ec8cfd9ec257f43e37160118deeed3",
+    "configs/splits.yaml": "05225f531e7c8564152c5c4af40ec619bdb1dc1a2b68d7a7f476c831caa0d290",
+    "data/processed_features/windows_all.csv": "6a733c807fe41fc60f8bfedfd84468d118cadeb540eb9479edf12cdef2a85f34",
+    "results/phase_b/E1/metrics.json": "13a465c14e64693b1f92e605dbd9f0268a1b6dbf010f6e77718bd1b20e782b54",
+    "results/phase_b/E1/metrics_summary.csv": "6aae84bceed2a0f6cc836f52a5dd4b3db84f1dcb2935566e23e38d404ef79fbb",
+    "results/phase_b/E2/status.json": "36e2fe98f5c26ffbaab58b5e35eb3c8269282c0b22a8d5d0cdf92026476c23ec",
+    "splits/E1.csv": "ff74c16dd1cd4b873596dc80fa0f389349eb33d4f7b525ccb8b1cc131c67cc67",
+    "splits/E2.status.json": "9ed84cf82587303751bbdf1d26af8f0a27159b5febc57af54c75e67270b4679e"
+  },
+  "output_file": "docs/phase1_report.md",
+  "output_sha256": "75225340dc26aed0cd71f2de86d362b34f0dd1f89f8613dcbb35079c4fae31df",
+  "outputs": {
+    "docs/phase1_report.md": "75225340dc26aed0cd71f2de86d362b34f0dd1f89f8613dcbb35079c4fae31df",
+    "results/phase1/summary.csv": "14f5fce0dcd464ce6e3439aa207b23b80165c178ea052ffdea9030aec8b2fae1"
+  },
+  "software_versions": {
+    "pandas": "2.3.3",
+    "python": "3.14.6",
+    "scikit_learn": "1.9.0",
+    "xgboost": "3.4.1",
+    "zeek": "/opt/zeek/bin/zeek version 9.0.1"
+  }
+}
