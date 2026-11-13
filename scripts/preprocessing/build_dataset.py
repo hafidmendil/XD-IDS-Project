@@ -8,10 +8,10 @@ import hashlib
 import importlib.metadata
 import json
 import shutil
-import sys
 import subprocess
-from pathlib import Path
+import sys
 from datetime import datetime, timezone
+from pathlib import Path
 
 import pandas as pd
 import yaml

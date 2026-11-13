@@ -1,7 +1,7 @@
 """Tests for factual Phase 1 reporting with incomplete E2 class coverage."""
 
-import json
 import hashlib
+import json
 
 import pandas as pd
 

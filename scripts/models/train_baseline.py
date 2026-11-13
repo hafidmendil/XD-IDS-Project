@@ -1,10 +1,11 @@
 import argparse
 import glob
 import os
+
+import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix, f1_score
 from sklearn.model_selection import train_test_split
-import pandas as pd
 
 
 def load_cic_dataset(path_pattern):

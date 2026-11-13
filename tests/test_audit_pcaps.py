@@ -2,7 +2,12 @@
 
 from scapy.all import IP, TCP, wrpcap
 
-from scripts.data.audit_pcaps import audit_pcap_directory, build_capture_registry, flag_duplicates, infer_label
+from scripts.data.audit_pcaps import (
+    audit_pcap_directory,
+    build_capture_registry,
+    flag_duplicates,
+    infer_label,
+)
 
 
 def _make_pcap(path, start_time, payload_size, attack=False):

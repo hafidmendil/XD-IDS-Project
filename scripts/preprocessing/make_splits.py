@@ -11,7 +11,6 @@ import numpy as np
 import pandas as pd
 import yaml
 
-
 DEFAULT_CONFIG = Path(__file__).resolve().parents[2] / "configs" / "splits.yaml"
 SPLITS = ("train", "validation", "test")
 METADATA_COLUMNS = {

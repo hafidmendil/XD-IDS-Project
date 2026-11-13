@@ -21,7 +21,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import average_precision_score, confusion_matrix, f1_score
 from xgboost import XGBClassifier
 
-
 DEFAULT_CONFIG = Path(__file__).resolve().parents[2] / "configs" / "models.yaml"
 SPLITS = ("train", "validation", "test")
 METADATA_COLUMNS = {
