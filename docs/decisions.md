@@ -93,3 +93,4 @@ Décision :
 - madatasets sert uniquement de test technique du pipeline, sans aucune conclusion scientifique.
 - CIC-IDS2017 (Monday et Tuesday, ré-extraits avec Zeek) devient le domaine pilote pour RQ1 (E1 contre E2).
 - La généralisation IoT (E3, E4) repose sur MQTT-IoTIDS2020, Bot-IoT, ToN_IoT, CICIoT2023 et XD-IoT.
+- Les captures normales (poste 192.168.0.163 vers des IP publiques) et les captures d'attaque (laboratoire fermé 192.168.0.20/21, ou 172.16.4.x pour mirai) proviennent de réseaux différents : le réseau lui-même trahit la classe, indépendamment de la date.
