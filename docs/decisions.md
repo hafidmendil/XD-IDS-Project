@@ -81,3 +81,15 @@ the test partition, preventing binary evaluation.
   `windows_all.csv` hash; earlier splits and metrics are stale.
 - The stratification controls class presence only and does not tune model
   hyperparameters or thresholds against test performance.
+
+## Décision 2026-11-13 : statut de madatasets et rôle de CIC-IDS2017
+
+Constats :
+- Les deux seules captures normales de madatasets datent du 2025-07-05 (normal) et du 2025-07-28 (normal2), tandis que les 15 captures d'attaque datent de janvier-février 2021. La date sépare parfaitement les classes : tout split chronologique est confondu avec le label.
+- Chaque capture X2 est une variante de X (mêmes paquets, mêmes horodatages, adresses IP source/destination inversées, constaté sur distcc_exec_backdoor). Une paire X/X2 forme une seule session et ne doit jamais être répartie entre train, validation et test.
+- Les labels de madatasets sont déduits du nom du fichier ; le contenu n'est pas vérifié (distcc_exec_backdoor.pcap montre du trafic sur le port 1099).
+
+Décision :
+- madatasets sert uniquement de test technique du pipeline, sans aucune conclusion scientifique.
+- CIC-IDS2017 (Monday et Tuesday, ré-extraits avec Zeek) devient le domaine pilote pour RQ1 (E1 contre E2).
+- La généralisation IoT (E3, E4) repose sur MQTT-IoTIDS2020, Bot-IoT, ToN_IoT, CICIoT2023 et XD-IoT.
