@@ -1,0 +1,22 @@
+{
+  "day": "tuesday",
+  "conn_log": "data/processed_zeek/cic-ids2017-tuesday/conn.log",
+  "total": 34170,
+  "block_seconds": 300,
+  "families": {
+    "BENIGN": {
+      "n": 33451,
+      "first_utc": "2017-07-04 11:53:34",
+      "last_utc": "2017-07-04 12:30:15"
+    },
+    "FTP-Patator": {
+      "n": 719,
+      "first_utc": "2017-07-04 12:17:52",
+      "last_utc": "2017-07-04 12:30:15"
+    }
+  },
+  "n_blocks": 8,
+  "blocks_attack_only": 0,
+  "blocks_benign_only": 4,
+  "blocks_mixed": 4
+}

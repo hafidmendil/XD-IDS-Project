@@ -1,0 +1,17 @@
+{
+  "day": "monday",
+  "conn_log": "data/processed_zeek/cic-ids2017-monday/conn.log",
+  "total": 28569,
+  "block_seconds": 300,
+  "families": {
+    "BENIGN": {
+      "n": 28569,
+      "first_utc": "2017-07-03 11:55:58",
+      "last_utc": "2017-07-03 12:35:09"
+    }
+  },
+  "n_blocks": 8,
+  "blocks_attack_only": 0,
+  "blocks_benign_only": 8,
+  "blocks_mixed": 0
+}
