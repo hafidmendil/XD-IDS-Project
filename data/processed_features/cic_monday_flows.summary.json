@@ -1,0 +1,15 @@
+{
+  "day": "monday",
+  "flows_written": 28529,
+  "flows_dropped_unknown_duration": 40,
+  "flows_per_label": {
+    "0": 28529
+  },
+  "flows_per_family": {
+    "BENIGN": 28529
+  },
+  "blocks": 9,
+  "blocks_with_attack": 0,
+  "first_block_utc": "2017-07-03 11:55:00",
+  "last_block_utc": "2017-07-03 12:35:00"
+}

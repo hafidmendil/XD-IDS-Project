@@ -1,0 +1,17 @@
+{
+  "day": "tuesday",
+  "flows_written": 34071,
+  "flows_dropped_unknown_duration": 99,
+  "flows_per_label": {
+    "0": 33352,
+    "1": 719
+  },
+  "flows_per_family": {
+    "BENIGN": 33352,
+    "FTP-Patator": 719
+  },
+  "blocks": 9,
+  "blocks_with_attack": 4,
+  "first_block_utc": "2017-07-04 11:50:00",
+  "last_block_utc": "2017-07-04 12:30:00"
+}
