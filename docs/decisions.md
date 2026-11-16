@@ -94,3 +94,7 @@ Décision :
 - CIC-IDS2017 (Monday et Tuesday, ré-extraits avec Zeek) devient le domaine pilote pour RQ1 (E1 contre E2).
 - La généralisation IoT (E3, E4) repose sur MQTT-IoTIDS2020, Bot-IoT, ToN_IoT, CICIoT2023 et XD-IoT.
 - Les captures normales (poste 192.168.0.163 vers des IP publiques) et les captures d'attaque (laboratoire fermé 192.168.0.20/21, ou 172.16.4.x pour mirai) proviennent de réseaux différents : le réseau lui-même trahit la classe, indépendamment de la date.
+
+## 2026-11-16 : extraction Zeek avec -C et snapshot Tuesday partiel
+- Décision : toutes les extractions Zeek utilisent `-C` (checksums ignorés). Test sur 300 Mo de Monday : 7 937 connexions avec et sans -C ; sans -C, 11 lignes bad_checksum dans weird.log. Objectif : extraction homogène entre datasets. À répercuter dans zeek_processor.py.
+- Snapshot Tuesday-WorkingHours.pcap : 8 243 210 432 octets (≈ 74,6 % de 11 048 283 608), source miroir Hugging Face bencorn/CICIDS2017. sha256 = 4cb508cb0666f40f97d741c6ecf7f19c781c9d933c811e97f3a782bf1be6c646. Les 4 992 031 540 premiers octets ont le sha256 00f8bc70…c38a7 (identique à l'ancien préfixe). Couverture : 2017-07-04 11:53:32 → 13:35:56 UTC. Fichier coupé au milieu d'un paquet. Sha256 attendu du fichier complet : 080c2250154c5a174c03660ed0f75a3858d41a27511ba716e780d7bcb1ec4c57.
