@@ -1,0 +1,22 @@
+{
+  "config_file": "windows.yaml",
+  "config_sha256": "7f8de4a3c3b549b1b80975443cd5128de9ebe44fa7d7e65cd8bb1bfa1c95b5a6",
+  "device_side": "orig",
+  "excluded_unknown_duration_flows": 0,
+  "input_flows": 96479,
+  "inputs": [
+    {
+      "file": "cic_tuesday_snap1_flows.csv",
+      "sha256": "4946ce595509fa2db57eb17c2170c1657ad7bbe97bb64d4ffe302c899e8088bb"
+    }
+  ],
+  "label_counts": {
+    "0": 1365,
+    "1": 62
+  },
+  "label_policy": "max_flow_label",
+  "output_file": "cic_tuesday_snap1_windows_apres.csv",
+  "output_sha256": "bc7cdf6dd3e17bafb5558b31f0235a9252704e9ad04a69f3ecb4b71097d4f178",
+  "output_windows": 1427,
+  "window_seconds": 60.0
+}

@@ -58,11 +58,26 @@ def engineer_features(df):
         # Sans durée, la disponibilité causale des statistiques du flux est inconnue.
         out[c] = values if c == "duration" else values.fillna(0)
 
+    # Zeek n'écrit pas la durée d'un flux d'un seul paquet (« - ») : ce flux est
+    # instantané, donc sa durée vaut 0 et il est disponible dès ts. Vérifié sur
+    # CIC-IDS2017 (Tuesday) : les 736 flux sans durée n'ont tous qu'un paquet.
+    # Un flux sans durée mais de plusieurs paquets (ou sans compte de paquets)
+    # reste NaN : il est exclu et compté par build_windows.
+    pkts_raw = pd.to_numeric(df.get("orig_pkts"), errors="coerce") + pd.to_numeric(
+        df.get("resp_pkts"), errors="coerce"
+    )
+    duration_unknown = out["duration"].isna() & (pkts_raw <= 1)
+    out["duration_unknown"] = duration_unknown.astype(int)
+    out.loc[duration_unknown, "duration"] = 0.0
+
     # Features dérivées (utiles pour détecter scans / flood / exfiltration)
     out["total_bytes"] = out["orig_bytes"] + out["resp_bytes"]
     out["total_pkts"] = out["orig_pkts"] + out["resp_pkts"]
     out["bytes_ratio"] = out["orig_bytes"] / (out["total_bytes"] + 1)
-    out["pkts_per_sec"] = out["total_pkts"] / (out["duration"] + 1e-6)
+    # Durée inconnue (flux instantané) : débit indéfini, mis à 0 (voir duration_unknown).
+    out["pkts_per_sec"] = (out["total_pkts"] / (out["duration"] + 1e-6)).where(
+        out["duration_unknown"] == 0, 0.0
+    )
     out["bytes_per_pkt"] = out["total_bytes"] / (out["total_pkts"] + 1)
 
     # One-hot à catégories fixes

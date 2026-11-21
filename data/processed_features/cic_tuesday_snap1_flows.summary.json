@@ -1,13 +1,13 @@
 {
   "day": "tuesday",
-  "flows_written": 95743,
-  "flows_dropped_unknown_duration": 736,
+  "flows_written": 96479,
+  "flows_dropped_unknown_duration": 0,
   "flows_per_label": {
-    "0": 91751,
+    "0": 92487,
     "1": 3992
   },
   "flows_per_family": {
-    "BENIGN": 91751,
+    "BENIGN": 92487,
     "FTP-Patator": 3992
   },
   "blocks": 22,
